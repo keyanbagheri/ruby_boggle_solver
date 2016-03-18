@@ -7,9 +7,26 @@ class Boggle
     @board = [
               ['b', 'e', 't', 'x'],
               ['a', 'r', 'c', 'a'],
-              ['r', 'c', 't', 'x'],
+              ['r', 'c', 't', 'q'],
               ['e', 'h', 's', 'i']
              ]
+  end
+
+  def check_board_for_char(char)
+    indices = []
+    for y in 0..3
+      for x in 0..3
+        if @board[y][x] == char
+          indices << [y, x]
+        end
+      end
+    end
+    return indices
+  end
+
+  def check_words
+    @word_list.each do |word|
+    end
   end
 
   def check_word(string)
