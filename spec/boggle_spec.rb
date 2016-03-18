@@ -12,6 +12,27 @@ describe Boggle do
     end
   end
 
+  describe ".check_word_possibility" do
+    context "when given cat" do
+      it "returns true for cat" do
+        expect(@boggle.check_word_possibility("cat")).to eq(true)
+      end
+    end
+    context "when given non-word" do
+      it "does not return true for asdf" do
+        expect(@boggle.check_word_possibility('asdf')).to eq(false)
+      end
+    end
+  end
+
+  describe ".shorten_word_list" do
+    context "when given init word list" do
+      it "returns list with only valid words" do
+        expect(@boggle.shorten_word_list).to eq(["art", "bet", "cat", "catch", "catcher", "her"])
+      end
+    end
+  end
+
   describe ".check_board_for_char" do
     context "when given x" do
       it "returns array with one index pair (0,3)" do
@@ -21,19 +42,6 @@ describe Boggle do
     context "when given c" do
       it "returns array with two index pair (1,2) and (2,1)" do
         expect(@boggle.check_board_for_char("c")).to eq([[1, 2], [2, 1]])
-      end
-    end
-  end
-
-  describe ".check_word" do
-    context "when given cat" do
-      it "returns true for cat" do
-        expect(@boggle.check_word("cat")).to eq(true)
-      end
-    end
-    context "when given non-word" do
-      it "does not return true for asdf" do
-        expect(@boggle.check_word('asdf')).not_to eq(false)
       end
     end
   end

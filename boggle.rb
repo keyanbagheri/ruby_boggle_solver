@@ -2,15 +2,41 @@ class Boggle
 
   def initialize
     # seed a small list of words to check from
-    @word_list = ["art", "bet", "cat", "catch", "her", "ruby", "hyfn"]
+    @word_list = ["art", "bet", "cat", "catch", "catcher", "her", "ruby", "hyfn"]
     # seed a default board to check
     @board = [
               ['b', 'e', 't', 'x'],
-              ['a', 'r', 'c', 'a'],
+              ['e', 'r', 'c', 'a'],
               ['r', 'c', 't', 'q'],
               ['e', 'h', 's', 'i']
              ]
   end
+
+  # in order to save time on our more complex methods we will run a couple simple methods to shorten our word list to only definite possibilities
+
+  def shorten_word_list
+    new_list = []
+    @word_list.each do |word|
+      if check_word_possibility(word) == true
+        new_list << word
+      end
+    end
+    return new_list
+  end
+
+  # before running a detailed check of a word we will first see if all of it's characters even appear on the board
+
+  def check_word_possibility(word)
+    word.split('').each do |char|
+      status = check_board_for_char(char)
+      if status == []
+        return false
+      end
+    end
+    return true
+  end
+
+  #checking if the board even has the character included in our word above
 
   def check_board_for_char(char)
     indices = []
@@ -24,18 +50,16 @@ class Boggle
     return indices
   end
 
-  def check_words
-    @word_list.each do |word|
-    end
-  end
+  
 
-  def check_word(string)
-    result = ""
-    @word_list.each do |word|
-      if word == string
-        return true
-      end
-    end
-  end
+  # def check_words
+  #   @word_list.each do |word|
+  #     check_word(word)
+  #   end
+  # end
+
+  # def check_neigbors(index1, index2, char)
+
+  # end
 
 end
