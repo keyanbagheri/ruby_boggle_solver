@@ -44,6 +44,11 @@ describe Boggle do
         expect(@boggle.check_board_for_char("c")).to eq([[1, 2], [2, 1]])
       end
     end
+    context "when given a char that isn't on board" do
+      it "returns blank array" do
+        expect(@boggle.check_board_for_char("m")).to eq([])
+      end
+    end
   end
 
 
