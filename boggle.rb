@@ -51,18 +51,59 @@ class Boggle
   end
 
   def check_board_for_words
-
+    words_in_board = []
+    new_list = shorten_word_list
+    new_list.each do |word|
+      if check_board_for_word(word) == true
+        words_in_board << word
+      end
+    end
+    return words_in_board
   end
 
-
-  # def check_words
-  #   @word_list.each do |word|
-  #     check_word(word)
+  # def check_board_for_word(word)
+  #   char_count = 1
+  #   starting_indices = check_board_for_char(word[0])
+  #   starting_indices.each do |index|
+  #     for i in 1..word.length+1
+  #       if char_count == word.length
+  #         return true
+  #       else
+  #         indices = check_neighbors_for_char(word[i], index[0], index[1])
+  #         if indices != []
+  #           char_count = char_count + 1
+            
+  #         else
+  #           return false
+  #         end
+  #       end
+  #     end
   #   end
   # end
+
+
+  def check_neighbors_for_char(char, y, x)
+    indices = []
+    i = -1
+    until i == 2
+      j = -1
+      until j == 2
+        if @board[y + i][x + j] === char
+          indices << [y + i, x + j]
+        end
+        j += 1
+      end
+      i += 1
+    end
+    return indices
+  end
 
   # def check_neigbors(index1, index2, char)
 
   # end
 
 end
+
+@boggle = Boggle.new
+
+print @boggle.check_neighbors_for_char('t', 1, 1)

@@ -40,7 +40,7 @@ describe Boggle do
       end
     end
     context "when given c" do
-      it "returns array with two index pair (1,2) and (2,1)" do
+      it "returns array with two index pairs (1,2) and (2,1)" do
         expect(@boggle.check_board_for_char("c")).to eq([[1, 2], [2, 1]])
       end
     end
@@ -51,6 +51,26 @@ describe Boggle do
     end
   end
 
+  describe ".check_neighbors_for_char" do
+    context "when given 't' from index (1,1)" do
+      it "returns array with two index pairs (0,2) and (2,2)" do
+        expect(@boggle.check_neighbors_for_char('t', 1, 1)).to eq([[0,2], [2,2]])
+      end
+    end
+    context "when given 't' from index (1,0)" do
+      it "returns blank array" do
+        expect(@boggle.check_neighbors_for_char('t', 1, 0)).to eq([])
+      end
+    end
+  end
+
+  describe ".check_board_for_word" do
+    context "when given 'bet'" do
+      it "returns true" do
+        expect(@boggle.check_board_for_word('bet')).to eq(true)
+      end
+    end
+  end
 
 
 end
