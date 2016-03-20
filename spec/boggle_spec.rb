@@ -10,6 +10,12 @@ describe Boggle do
     it "returns a Boggle object" do
       expect(@boggle).to be_an_instance_of Boggle
     end
+    it "has a collection of words" do
+      expect(@boggle.word_list).to eq(["art", "bet", "cat", "catch", "catcher", "her", "ruby", "hyfn"])
+    end
+    it "has a board of characters" do
+      expect(@boggle.board).to eq([['b', 'e', 't', 'x'],['e', 'r', 'c', 'a'],['r', 'c', 't', 'q'],['e', 'h', 's', 'i']])
+    end
   end
 
   describe ".check_word_possibility" do
@@ -85,7 +91,7 @@ describe Boggle do
   describe ".check_board_for_words" do
     context "when given a dictionary" do
       it "returns only the words that can be found on board" do
-        expect(@boggle.check_board_for_words).to eq([])
+        expect(@boggle.check_board_for_words).to eq(["bet", "cat", "catch", "catcher", "her"])
       end
     end
   end
