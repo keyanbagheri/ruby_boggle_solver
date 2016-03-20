@@ -12,6 +12,7 @@ class Boggle
               ['r', 'c', 't', 'q'],
               ['e', 'h', 's', 'i']
              ]
+    @used_indices = []
   end
 
   # in order to save time on our more complex methods we will run a couple simple methods to shorten our word list to only definite possibilities
