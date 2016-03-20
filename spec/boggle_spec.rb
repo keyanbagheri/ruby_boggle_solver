@@ -64,10 +64,28 @@ describe Boggle do
     end
   end
 
-  describe ".check_board_for_word" do
-    context "when given 'bet'" do
+  describe ".check_board_for_string" do
+    context "when given a short present word" do
       it "returns true" do
-        expect(@boggle.check_board_for_word('bet')).to eq(true)
+        expect(@boggle.check_board_for_string('bet')).to eq(true)
+      end
+    end
+    context "when given a non-present word" do
+      it "returns false" do
+        expect(@boggle.check_board_for_string('pituitary')).to eq(false)
+      end
+    end
+    context "when given a longer present word" do
+      it "returns true" do
+        expect(@boggle.check_board_for_string('catcher')).to eq(true)
+      end
+    end
+  end
+
+  describe ".check_board_for_words" do
+    context "when given a dictionary" do
+      it "returns only the words that can be found on board" do
+        expect(@boggle.check_board_for_words).to eq([])
       end
     end
   end

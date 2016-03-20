@@ -54,53 +54,67 @@ class Boggle
     words_in_board = []
     new_list = shorten_word_list
     new_list.each do |word|
-      if check_board_for_word(word) == true
+      puts word
+      if check_board_for_string(word) == true
         words_in_board << word
       end
     end
     return words_in_board
   end
 
-  # def check_board_for_word(word)
-  #   char_count = 1
-  #   starting_indices = check_board_for_char(word[0])
-  #   starting_indices.each do |index|
-  #     for i in 1..word.length+1
-  #       if char_count == word.length
-  #         return true
-  #       else
-  #         indices = check_neighbors_for_char(word[i], index[0], index[1])
-  #         if indices != []
-  #           char_count = char_count + 1
-            
-  #         else
-  #           return false
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+  def check_board_for_string(string)
+    indices = check_board_for_char(string[0])
+    string.slice!(0)
+    indices.each do |index|
+      if check_for_end_of_word(string, index[0], index[1]) == true
+        return true
+      end
+    end
+    return false
+  end
 
+  def check_for_end_of_word(string, y, x)
+    indices = check_neighbors_for_char(string[0], y, x)
+    if indices == []
+      return false
+    elsif string.length == 1
+      return true
+    elsif string.length > 1
+      string.slice!(0)
+      indices.each do |index|
+        results = check_for_end_of_word(string, index[0], index[1])
+        if results == true
+          return true
+        end
+      end
+    else
+      return false
+    end
+  end
 
   def check_neighbors_for_char(char, y, x)
     indices = []
     i = -1
     until i == 2
-      j = -1
-      until j == 2
-        if @board[y + i][x + j] === char
-          indices << [y + i, x + j]
+      # make sure that the index falls in the range of the 4x4 board (0..3)
+      if y+i >= 0 && y+i <= 3
+        j = -1
+        until j == 2
+          # make sure that the index falls in the range of the 4x4 board (0..3)
+          if x+j >=0 && x+j <=3
+            # if the neighboring cells have a matching character, add their indices to the collection
+            if @board[y + i][x + j] === char
+              indices << [y + i, x + j]
+            end
+          end
+          j += 1
         end
-        j += 1
       end
       i += 1
     end
+    #finally we return our collection of indices that house our specific character
     return indices
   end
-
-  # def check_neigbors(index1, index2, char)
-
-  # end
 
 end
 
