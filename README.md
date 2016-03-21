@@ -24,6 +24,10 @@ Write a program that solves a 4x4 randomly arranged Boggle grid.
 
 1. Update the solver to ensure that our search does not use the same letter tile twice
 
+2. Ruling out of words that are not included in the boggle board could possibly be done quicker by starting the initial character search with the character that is used the least in the alphabet (and thereby most unique). 
+
+   I.E. searching for 'x' or 'q' before 'a' or 's' would possibly speed up the process and eliminate some words quicker.
+
 
 
 ## Going Further

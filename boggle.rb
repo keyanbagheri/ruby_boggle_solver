@@ -7,10 +7,10 @@ class Boggle
     @word_list = ["art", "bet", "cat", "catch", "catcher", "her", "ruby", "hyfn"]
     # seed a default board to check
     @board = [
-              ['b', 'e', 't', 'x'],
-              ['e', 'r', 'c', 'a'],
-              ['r', 'c', 't', 'q'],
-              ['e', 'h', 's', 'i']
+              [{char: 'b', searched: false}, {char: 'e', searched: false}, {char: 't', searched: false}, {char: 'x', searched: false}],
+              [{char: 'e', searched: false}, {char: 'r', searched: false}, {char: 'c', searched: false}, {char: 'a', searched: false}],
+              [{char: 'r', searched: false}, {char: 'c', searched: false}, {char: 't', searched: false}, {char: 'q', searched: false}],
+              [{char: 'e', searched: false}, {char: 'h', searched: false}, {char: 's', searched: false}, {char: 'i', searched: false}]
              ]
     @used_indices = []
   end
@@ -47,7 +47,7 @@ class Boggle
     indices = []
     for y in 0..3
       for x in 0..3
-        if @board[y][x] == char
+        if @board[y][x][:char] == char
           indices << [y, x]
         end
       end
@@ -127,7 +127,7 @@ class Boggle
           # make sure that the index falls in the range of the 4x4 board (0..3)
           if x+j >=0 && x+j <=3
             # if the neighboring cells have a matching character, add their indices to the collection
-            if @board[y + i][x + j] === char
+            if @board[y + i][x + j][:char] === char
               indices << [y + i, x + j]
             end
           end

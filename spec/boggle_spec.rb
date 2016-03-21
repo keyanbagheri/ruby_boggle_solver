@@ -14,7 +14,7 @@ describe Boggle do
       expect(@boggle.word_list).to eq(["art", "bet", "cat", "catch", "catcher", "her", "ruby", "hyfn"])
     end
     it "has a board of characters" do
-      expect(@boggle.board).to eq([['b', 'e', 't', 'x'],['e', 'r', 'c', 'a'],['r', 'c', 't', 'q'],['e', 'h', 's', 'i']])
+      expect(@boggle.board).to eq([[{char: 'b', searched: false}, {char: 'e', searched: false}, {char: 't', searched: false}, {char: 'x', searched: false}],[{char: 'e', searched: false}, {char: 'r', searched: false}, {char: 'c', searched: false}, {char: 'a', searched: false}],[{char: 'r', searched: false}, {char: 'c', searched: false}, {char: 't', searched: false}, {char: 'q', searched: false}],[{char: 'e', searched: false}, {char: 'h', searched: false}, {char: 's', searched: false}, {char: 'i', searched: false}]])
     end
   end
 
