@@ -8,7 +8,7 @@ class Boggle
     # seed a default board to check
     @board = [
               [{char: 'b', searched: false}, {char: 'e', searched: false}, {char: 't', searched: false}, {char: 'x', searched: false}],
-              [{char: 'e', searched: false}, {char: 'r', searched: false}, {char: 'c', searched: false}, {char: 'a', searched: false}],
+              [{char: 'e', searched: false}, {char: 'p', searched: false}, {char: 'c', searched: false}, {char: 'a', searched: false}],
               [{char: 'r', searched: false}, {char: 'c', searched: false}, {char: 't', searched: false}, {char: 'q', searched: false}],
               [{char: 'e', searched: false}, {char: 'h', searched: false}, {char: 's', searched: false}, {char: 'i', searched: false}]
              ]
@@ -63,6 +63,7 @@ class Boggle
     # run method to shorten the possible words based on characters on board alone and not placement of characters
     new_list = shorten_word_list
     new_list.each do |word|
+      clear_searched_characters
       # because I slice the strings inside the methods I am saving a duplicate here to be added to the collection if the word is found in the board
       full_word = word.dup
       # once found in board add word to collection
@@ -76,11 +77,13 @@ class Boggle
   # method will break down the indices (if multiple) of the first character of the word and start from there
 
   def check_board_for_string(string)
+    clear_searched_characters
     indices = check_board_for_char(string[0])
     # we shorten the string that we pass on by one character, the character that we have already found on the board
     string.slice!(0)
     indices.each do |index|
       # if any true value is returned back then we pass the true value up to our check_board_for_words method
+      @board[index[0]][index[1]][:searched] = true
       if check_for_end_of_word(string, index[0], index[1]) == true
         return true
       end
@@ -94,6 +97,7 @@ class Boggle
     indices = check_neighbors_for_char(string[0], y, x)
     # if that character is not found in the neighboring cells return false
     if indices == []
+      @board[y][x][:searched] = false
       return false
     # if that character is found and it happens to be the last one in our string return true, no further searching in necessary
     elsif string.length == 1
@@ -109,6 +113,7 @@ class Boggle
         end
       end
     else
+      @board[y][x][:searched] = false
       return false
     end
   end
@@ -127,7 +132,8 @@ class Boggle
           # make sure that the index falls in the range of the 4x4 board (0..3)
           if x+j >=0 && x+j <=3
             # if the neighboring cells have a matching character, add their indices to the collection
-            if @board[y + i][x + j][:char] === char
+            if @board[y + i][x + j][:char] === char && @board[y + i][x + j][:searched] == false
+              @board[y + i][x + j][:searched] == true
               indices << [y + i, x + j]
             end
           end
@@ -140,8 +146,13 @@ class Boggle
     return indices
   end
 
+  def clear_searched_characters
+    @board.each do |row|
+      row.each do |cell|
+        cell[:searched] = false
+      end
+    end
+  end
+
 end
 
-@boggle = Boggle.new
-
-print @boggle.check_neighbors_for_char('t', 1, 1)
