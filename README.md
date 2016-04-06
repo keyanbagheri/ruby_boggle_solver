@@ -28,7 +28,7 @@ Write a program that solves a 4x4 randomly arranged Boggle grid.
 
 
 
-## Going Further
+## Going Even Further
 
 - What external resources would help?
   - A dictionary API to be able to actually check our board against a large collection of valid words
