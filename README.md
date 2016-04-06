@@ -4,7 +4,8 @@
 
 ## Challenge
 
-Write a program that solves a 3x3 arranged Boggle grid.
+
+Write a program that solves a 4x4 randomly arranged Boggle grid.
 
 
 
