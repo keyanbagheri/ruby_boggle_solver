@@ -1,5 +1,6 @@
 
-This line is here to show our stupid students 'team div_and_conquer' an example of a simple merge conflict.
+
+This line is here to show our very smart students 'team div_and_conquer' an example of a simple merge conflict.
 
 
 
