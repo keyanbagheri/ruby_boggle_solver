@@ -1,3 +1,8 @@
+
+This line is here to show our [insert adjective] students 'team div_and_conquer' an example of a simple merge conflict.
+
+
+
 ###Boggle Solver (in Ruby)
 
 [Boggle](http://en.wikipedia.org/wiki/Boggle) is a word game played with alphabetic letter tiles arranged randomly on a grid. Players must identify words spelled by sequential adjacent letters in any direction (horizontally, vertically or diagonally), but may not use the same letter tile twice.
