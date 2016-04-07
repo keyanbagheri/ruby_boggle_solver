@@ -1,5 +1,5 @@
 
-This line is here to show our [insert adjective] students 'team div_and_conquer' an example of a simple merge conflict.
+This line is here to show our smart students 'team div_and_conquer' an example of a simple merge conflict.
 
 
 
